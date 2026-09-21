@@ -1,27 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BiteBox</title>
 </head>
+
 <body>
-   <header>
-     <h1><Mark>BitBox</Mark></h1>
-    <hr>
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="menu.html">menu</a>
-        <a href="about.html">about us</a>
-        <a href="contact.html">Contact</a>
-    </nav>
-    <hr>
-   </header>
-   <main>
-    <section>
+    <header>
+        <h1><Mark>BitBox</Mark></h1>
+        <hr>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="menu.html">menu</a>
+            <a href="about.html">about us</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+        <hr>
+    </header>
+    <main>
+        <!--<section>
         <h2><b><i>vist my webside </i></b></h2>
-    <a href="https://www.google.com" target="_blank">vist webside</a>
-    </section>
-   </main>    
-    </body>
-    </html>
+    <a href="https://www.google.com" target="_self">vist webside</a>
+    </section>-->
+        <hr>
+        <h2 align ="center">Customer registration and obder form </h2>
+        <form action="menu.html" >
+       <h3>Customer information</h3>
+       <label for="fullname">Full Name</label><br>
+       <input type="text"name="fullname"id="fullname" placeholder="enter full name"><br><br>
+
+        <label for="email">Email</label><br>
+       <input type="email"name="email"id="email" placeholder="enter youpasswordid"><br><br>
+
+        <label for="password">Password</label><br>
+       <input type="password"name="password"id="password" placeholder="enter password"><br><br>
+
+        <label for="phone number">Phone Number</label><br>
+       <input type="tel"name="phone number"id="phone number" placeholder="Enter phone number"><br><br>
+
+
+       <h3>order information </h3>
+       <label for="quantity">Quantity</label><br>
+       <input type="number" name="quantity" id="quantity"><br><br>
+            
+       <label for="deliveryDate">Preferred Delivery Date</label><br>
+       <input type="date" name="deliverydate" id="deliverydate" placeholder="Enter DeliveryDate"><br><br>
+
+
+       <label for="food">Select food item</label><br>
+       <select name="food" id="food">
+    <option value="pizz"> chees Pizz</option>
+    <option value="pannier">pannier tika </option>
+    <option value="burger">Burger</option>
+    <option value="sandwich">sandwich</option>
+    <option value="pasta">pasta</option>
+       </select>
+       <br>
+
+       <h3>Payment method</h3>
+       <input type="radio" name="payment" id="cash">
+       <label for="cash">Cash</label>
+
+       <input type="radio" name="payment" id="card">
+       <label for="card">card</label>
+
+       <input type="radio" name="payment" id="upi">
+       <label for="cash">upi</label>
+
+       <h3>Extras</h3>
+
+       <input type="checkbox" name="extras" id="drink">
+       <label for="drink">cold drink</label><br>
+
+        <input type="checkbox" name="extras" id="chees">
+       <label for="chees">extras chees</label><br>
+
+        <input type="checkbox" name="extras" id="dessert">
+       <label for="dessert">Dessert</label><br>
+
+       <h3>Delivery instruction </h3>
+       <label for="address">Delivery address</label><br>
+       <textarea name="address" id="address" cols="40" rows="5"></textarea><br><br>
+       
+       <input type="submit" value="place order">
+       <input type="submit" value="place ">
+       <input type="reset" value="clear form">
+        </form>
+    </main>
+</body>
+
+</html>
