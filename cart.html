@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <Header>
+        <img src="./assete/image/logo.png" alt="logo page" width="150px">
+        <hr>
+        <nav>
+            <a href="index.html">Home</a>
+            |
+            <a href="menu.html">menu</a>
+            |
+            <a href="about.html">about us</a>
+            |
+            <a href="contact.html">Contact</a>
+            |
+            <a href="cart.html">
+                <img src="./assete/icons/shopping cart.png" alt="cart shopping icon" width="25" height="25">
+            </a>
+        </nav>
+        <hr>
+    </Header>
+    <section id="cart-hero">
+        <div class="hero-contact">
+            <h2>Your shopping cart</h2>
+            <p>Review your selected food item before proceeding to checkout.</p>
+            <hr>
+            <p> update quantites , remove item , and confirm your order with ease.</p>
+        </div>
+    </section>
+    <section id="shopping- cart">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>price</th>
+                    <th>Quantity</th>
+                    <th>total</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="./assete/image/pizza.png" alt="pizza" width="80">
+                        <h3>Margertitta Pizza</h3>
+                        <p>Classic delight with fresh cheese & basil. </p>
+                    </td>
+                    <td> ₹249</td>
+                    <td>
+                        <Button>-</Button>
+                        <span>1</span>
+                        <button>+</button>
+                    </td>
+                    <td>₹249</td>
+                    <td><a href="#"><img src="./assete/image/delete.jpg" alt="delete" width="25"></a></td>
+                </tr>
+                <tr>
+                    <td><img src="./assete/image/burger.png" alt="burger" width="80">
+                        <h3>Margertitta Burger</h3>
+                        <p>Classic delight with fresh cheese & basil. </p>
+                    </td>
+                    <td>₹189</td>
+                    <td>
+                        <Button>-</Button>
+                        <span>2</span>
+                        <button>+</button>
+                    </td>
+                    <td>₹378</td>
+
+                    <td><a href="#"><img src="./assete/image/delete.jpg" alt="delete" width="25"></a></td>
+                    </td>
+                </tr>
+                <tr>
+                    <td><img src="./assete/image/pasta.webp" alt="pasta" width="80">
+                        <h3>Margertitta pasta</h3>
+                        <p>Classic delight with fresh cheese & basil. </p>
+                    </td>
+                    <td>₹199</td>
+                    <td><Button>-</Button>
+                        <span>3</span>
+                        <button>+</button>
+                    </td><br>
+                    <td>₹199</td>
+                    <td><img src="./assete/image/delete.jpg" alt="delete" width="25"></td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <aside id="order- summary">
+        <h2>order summary</h2>
+        <p><span>subtotal(3 Item)</span><span>₹826.00</span></p>
+
+        <p><span>Delivery charges</span><span>₹40.00</span></p>
+        <p><span>packaging charges</span><span>₹20.00</span></p>
+        <hr>
+        <h3><span>Total Amount</span><span>₹886.00</span></h3>
+        <button type="button"> Proceed to checkout</button>
+        <p><img src="./assete/icons/shield.webp" alt="secure payment" width="18" height="18"> secure checkout</p>
+    </aside>
+    <section id="cart-action">
+        <a href="./menu.html"> <img src="./assete/icons/left arrow.jpg" alt="continue shopping" width="18"
+                height="18">continue Shopping</a>
+        <button type="button">
+            <img src="./assete/image/delete.jpg" alt="delete cart" width="25" height="25">clear cart
+        </button>
+    </section>
+</body>
+
+</html>
