@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Z-index</title>
+    <Style>
+    .box{
+        border: 2px solid rgb(235, 3, 3);
+        height: 150px;
+        width: 150px;
+        border-radius: 10px;
+    }
+    #a{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: orange;
+        z-index: 4;
+    }
+    #b{
+        position: absolute;
+        top: 30px;
+        left: 30px;
+        background-color: red;
+        z-index: 3;
+    }
+    #c{
+        position: absolute;
+        top: 60px;
+        left: 60px;
+        background-color: rgb(243, 240, 233);
+        z-index: 1;
+    }
+    #d{
+        position: absolute;
+        top: 90px;
+        left: 90px;
+        background-color: greenyellow;
+        z-index: 2;
+    }
+    </Style>
+</head>
+<body>
+    <div class="box" id="a">1</div>
+    <div class="box" id="b">2</div>
+    <div class="box" id="c">3</div>
+    <div class="box" id="d">4</div>
+</body>
+</html>
