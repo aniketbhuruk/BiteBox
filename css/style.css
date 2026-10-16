@@ -417,3 +417,158 @@ nav a:hover {
         box-shadow: 0 8px 22px rgba(0, 0, 0, 0.18);
     }
 }
+
+#offer {
+    width: 95%;
+    height: 500px;
+    margin: 70px auto;
+    padding: 28px 55px;
+    box-sizing: border-box;
+    background-image: url('../assete/image/offer\ image.png');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    border-radius: 20px;
+
+    .offer-contact {
+        width: 38%;
+
+        h2 {
+            font-size: 34px;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1.15;
+            margin-bottom: 15px;
+
+        }
+
+        span {
+            background: linear-gradient(180deg, #ffffff 10%, #fff9d8 25%, #ffe47a 55%, #ffc107 80%, #ff9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        p {
+            font-size: 18px;
+            background: linear-gradient(180deg, #ffffff 40%, #ffc107 80%, #ff9800 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.5;
+            margin-bottom: 5px;
+
+            strong {
+                color: #ffb400;
+                font-weight: 600;
+            }
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 6px;
+            padding: 10px 20px;
+            background: #ff3b30;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 12px;
+            font-weight: 80px;
+            border-radius: 10px;
+            width: 120px;
+            text-align: center;
+
+        }
+
+        a:hover {
+            background-color: #ea0000;
+        }
+    }
+}
+
+h2,
+p,
+strong {
+    display: inline;
+}
+
+#review{
+    background-color: #ffffff;
+    padding: 60px 30px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px;
+
+    h2{
+        width: 100%;
+        text-align: center;
+        font-size: 42px;
+        font-weight: 700;
+        color: #222222;
+        margin-bottom: 30px;
+        position: relative;
+    }
+
+    h2::after{
+        content: "";
+        display: block;
+        width: 70px;
+        height: 3px;
+        background-color: #f39e0b;
+        margin: 10px auto 0;
+    }
+    article{
+        width: 330px;
+        background: #ffffff;
+        padding: 22px 20px 18px;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0, 0, 0, 0.12);
+        position: relative;
+        .customer{
+            display: flex;
+            align-items: center;
+
+            img{
+                width: 46;
+                height: 46px;
+                border-radius: 50px;
+                object-fit: cover;
+                margin-right: 10px;
+            }
+            h3{
+                font-size: 17px;
+                font-weight: 700;
+                color: #222222;
+                margin: 0 0 4px;
+            }
+
+            p span {
+                color: #f5b301;
+                font-size: 16px;
+            }
+        }
+    
+    article::before{
+        content: "” “";
+        position: absolute;
+        top: -14px;
+        left: 18px;
+        font-size: 42px;
+        color: #ff3b30;
+        background: #ffffff;
+        line-height: 1;
+        padding: 0 4px;
+    }
+
+    article>p{
+        font-size: 15px;
+        color: #222222;
+        inline-size: 22px;
+        margin: 0 0 14px;
+    }
+
+    article:hover{
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18;
+        }
+    }
+}
