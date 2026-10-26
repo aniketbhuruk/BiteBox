@@ -5,11 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-    <Header>
+    <header>
         <img src="./assete/image/logo.png" alt="logo page" class="logo">
         <hr>
         <nav>
@@ -26,95 +26,228 @@
             </a>
         </nav>
         <hr>
-    </Header>
+    </header>
     <section id="cart-hero">
-            <h1>Your shopping cart</h1>
-             <div class="divider"></div>
-             <hr>
-             <img src="./assete/image/spoone-removebg-preview.png" alt="">
-             <hr>
-              </div>
-            <p>Review your selected food item before proceeding to checkout.</p>
-            <br>
-            <p> update quantites , remove item , and confirm your order with ease.</p>
-        
-    </section>
-    <section id="shopping- cart">
-        <table>
-            <thead>
-                <tr>
-                    <th>Item</th>
-                    <th>price</th>
-                    <th>Quantity</th>
-                    <th>total</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><img src="./assete/image/pizza.png" alt="pizza" width="80">
-                        <h3>Margertitta Pizza</h3>
-                        <p>Classic delight with fresh cheese & basil. </p>
-                    </td>
-                    <td> ₹249</td>
-                    <td>
-                        <Button>-</Button>
-                        <span>1</span>
-                        <button>+</button>
-                    </td>
-                    <td>₹249</td>
-                    <td><a href="#"><img src="./assete/image/delete.jpg" alt="delete" width="25"></a></td>
-                </tr>
-                <tr>
-                    <td><img src="./assete/image/burger.png" alt="burger" width="80">
-                        <h3>Margertitta Burger</h3>
-                        <p>Classic delight with fresh cheese & basil. </p>
-                    </td>
-                    <td>₹189</td>
-                    <td>
-                        <Button>-</Button>
-                        <span>2</span>
-                        <button>+</button>
-                    </td>
-                    <td>₹378</td>
-
-                    <td><a href="#"><img src="./assete/image/delete.jpg" alt="delete" width="25"></a></td>
-                    </td>
-                </tr>
-                <tr>
-                    <td><img src="./assete/image/pasta.webp" alt="pasta" width="80">
-                        <h3>Margertitta pasta</h3>
-                        <p>Classic delight with fresh cheese & basil. </p>
-                    </td>
-                    <td>₹199</td>
-                    <td><Button>-</Button>
-                        <span>3</span>
-                        <button>+</button>
-                    </td><br>
-                    <td>₹199</td>
-                    <td><img src="./assete/image/delete.jpg" alt="delete" width="25"></td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-    <aside id="order- summary">
-        <h2>order summary</h2>
-        <p><span>subtotal(3 Item)</span><span>₹826.00</span></p>
-
-        <p><span>Delivery charges</span><span>₹40.00</span></p>
-        <p><span>packaging charges</span><span>₹20.00</span></p>
+        <h1>Your shopping cart</h1>
+        <div class="divider"></div>
         <hr>
-        <h3><span>Total Amount</span><span>₹886.00</span></h3>
-        <button type="button"> Proceed to checkout</button>
-        <p><img src="./assete/icons/shield.webp" alt="secure payment" width="18" height="18"> secure checkout</p>
-    </aside>
-    <section id="cart-action">
+        <img src="./assete/image/spoone-removebg-preview.png" alt="">
+        <hr>
+        </div>
+        <p>Review your selected food item before proceeding to checkout.</p>
+        <br>
+        <p> update quantites , remove item , and confirm your order with ease.</p>
+
+    </section>
+    <div id="cart-details">
+        <section id="shopping-cart">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>price</th>
+                        <th>Quantity</th>
+                        <th>total</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Item 1 -->
+                    <tr>
+                        <td>
+                            <div class="cart-item">
+
+                                <img src="./assete/image/pizza.png" alt="Margherita Pizza5" width="80">
+
+                                <div>
+
+                                    <h3>Margherita Pizza</h3>
+
+                                    <p>Classic delight with fresh cheese & basil.</p>
+
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td>₹249</td>
+                        <td>
+                            <div class="quantity-box">
+
+                                <button>-</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+                            </div>
+                        </td>
+
+                        <td>₹249</td>
+
+                        <td>
+                            <a href="#">
+                                <img src="./assete/image/delete.jpg" alt="Delete" width="25">
+                            </a>
+
+                        </td>
+                    </tr>
+                    <!-- Item 2 -->
+                    <tr>
+                        <td>
+                            <div class="cart-item">
+
+                                <img src="./assete/image/pasta.webp" alt="Margherita Pizza1" width="80">
+
+                                <div>
+
+                                    <h3>Margertitta pasta</h3>
+
+                                    <p>Classic delight with fresh cheese & basil.</p>
+
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td>₹200</td>
+                        <td>
+                            <div class="quantity-box">
+
+                                <button>-</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+                            </div>
+                        </td>
+
+                        <td>₹200</td>
+
+                        <td>
+                            <a href="#">
+                                <img src="./assete/image/delete.jpg" alt="Delete" width="25">
+                            </a>
+
+                        </td>
+                    </tr>
+                    <!-- Item 3 -->
+
+                    <tr>
+                        <td>
+                            <div class="cart-item">
+
+                                <img src="./assete/image/burger.png" alt="Margherita Pizza2" width="80">
+
+                                <div>
+
+                                    <h3>Margertitta burger</h3>
+
+                                    <p>Classic delight with fresh cheese & basil.</p>
+
+                                </div>
+                            </div>
+
+                        </td>
+
+                        <td>₹199</td>
+                        <td>
+                            <div class="quantity-box">
+
+                                <button>-</button>
+
+                                <span>1</span>
+
+                                <button>+</button>
+                            </div>
+                        </td>
+
+                        <td>₹199</td>
+
+                        <td>
+                            <a href="#">
+                                <img src="./assete/image/delete.jpg" alt="Delete" width="25">
+                            </a>
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <aside id="order-summary">
+            <h2>order summary</h2>
+            <p><span>subtotal(3 Item)</span><span>₹826.00</span></p>
+
+            <p><span>Delivery charges</span><span>₹40.00</span></p>
+            <p><span>packaging charges</span><span>₹20.00</span></p>
+            <hr>
+            <h3><span>Total Amount</span><span>₹886.00</span></h3>
+            <button type="button"> Proceed to checkout</button>
+            <p><img src="./assete/icons/shield.webp" alt="secure payment" width="18" height="18"> secure checkout</p>
+        </aside>
+    </div>
+
+    <section id="cart-actions">
         <a href="./menu.html"> <img src="./assete/icons/left arrow.jpg" alt="continue shopping" width="18"
                 height="18">continue Shopping</a>
         <button type="button">
             <img src="./assete/image/delete.jpg" alt="delete cart" width="25" height="25">clear cart
         </button>
     </section>
+    <footer>
+        <!-- Footer Logo Section -->
+        <div class="footer-container">
+            <section>
+                <img src="./assete/image/logo.png" alt="BiteBox Logo" width="100">
+                <p>Delicious Food Delivered to your Doorstep. Fast, Fresh and Tasty..!!</p>
+                <div class="footer-socials">
+                    <a href="#"><img src="./assete/icons/facebook.avif" alt="Facebook" width="35" height="35"></a>
+                    <a href="#"><img src="./assete/image/instagram.webp" alt="Instagram" width="35" height="35"></a>
+                    <a href="#"><img src="./assete/image/twitter.png" alt="Twitter" width="35" height="35"></a>
+                    <a href="#"><img src="./assete/image/youtub.jpeg" alt="Youtube" width="35" height="35"></a>
+            </section>
+            <hr>
+            <section>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="menu.html">Menus</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.htm">ContactUs</a></li>
+                    <li><a href="cart.html">Cart</a></li>
+                </ul>
+            </section>
+            <hr>
+            <section>
+                <h3>Coustomer Service</h3>
+                <ul>
+                    <li>Track Orders</li>
+                    <li>FAQs</li>
+                    <li>Shipping Policy</li>
+                    <li>Return Policy</li>
+                    <li>Terms and Conditions</li>
+                </ul>
+            </section>
+            <hr />
+            <section id="contact">
+                <h3>Contact Us</h3>
+                <p>📞 +91 9898989494</p>
+                <p>✉ contact@bitebox.com</p>
+                <p>📍 1, 2nd floor Pune Maharashtra India.</p>
+            </section>
+            <hr>
+            <section>
+                <h3>Payment Method</h3>
+                <img src="./assete/icons/visa logo.webp" alt="Visa" width="60">
+                <img src="./assete/icons/mastercard.webp" alt="MasterCard" width="60">
+                <img src="./assete/icons/upi.webp" alt="UPI" width="60">
+                <img src="./assets/images/paytm.png" alt="Paytm" width="60">
+            </section>
+        </div>
+        </div>
+        <hr>
+        <p>&copy; 2026 BiteBox. All Rights Reserved.</p>
+    </footer>
 </body>
 
 </html>
