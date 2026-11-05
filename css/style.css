@@ -168,6 +168,27 @@ nav a:hover {
     div {
         display: flex;
         justify-content: center;
+        flex-wrap: wrap;
+        gap: 24px;
+    }
+
+    article {
+        width: 170px;
+        padding: 18px 14px;
+        border: 1px solid #ececec;
+        border-radius: 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    article img {
+        display: block;
+        margin: 0 auto 12px;
+        object-fit: contain;
+    }
+
+    article h3 {
+        color: #333333;
+        font-size: 18px;
     }
 }
 
@@ -689,6 +710,7 @@ strong {
 /* Section Heading */
 
 #menu-items h2 {
+    display: block;
     font-size: 42px;
     font-weight: 700;
     color: #222222;
@@ -734,6 +756,7 @@ strong {
 
 #menu-items article {
     width: 235px;
+    min-height: 300px;
     background: #ffffff;
     border: 1px solid #ececec;
     border-radius: 10px;
@@ -742,6 +765,8 @@ strong {
     text-align: left;
     position: relative;
     margin: 10px;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Badge */
@@ -774,10 +799,15 @@ strong {
 /* Food Name */
 
 #menu-items article h3 {
+    display: block;
     font-size: 17px;
     font-weight: 600;
     color: #333333;
     margin: 10px;
+}
+
+#menu-items article p {
+    display: block;
 }
 
 /* Rating */
@@ -803,6 +833,7 @@ strong {
 #menu-items article button {
     width: calc(100% - 20px);
     margin: 0 10px 12px;
+    margin-top: auto;
     padding: 9px 0;
     background: #ffffff;
     color: #ff4d4d;
@@ -1756,6 +1787,7 @@ button:hover {
     font-size: 20px;
     margin-bottom: 25px;
     color: #222;
+
 }
 
 #order-summary p {
@@ -1901,7 +1933,7 @@ footer {
 /* Main Footer Layout */
 
 .footer-container {
-    width: 90%;
+    width: 100%;
     margin: auto;
     padding: 45px 0;
     display: flex;
@@ -1922,9 +1954,11 @@ footer {
 }
 
 .footer-container section:first-child>img {
-    width: 170px;
+    text-align: center;
+    width: 50%;
     height: auto;
-    margin-bottom: 18px;
+    display: block;
+    margin: -50px 0 0 40px;
 }
 
 .footer-container section:first-child p {
@@ -1945,9 +1979,9 @@ footer {
 }
 
 .footer-socials img {
-    width: 34px;
-    height: 34px;
-    transition: .3s;
+    width: 30px;
+    height: 30px;
+    transition: 0.3s;
 }
 
 .footer-container h3 {
@@ -2456,18 +2490,41 @@ footer>p {
         line-height: 28px;
     }
 
-    .newsletter-form {
-        display: flex;
-        justify-content: center;
-        gap: 15px;
+    /* Wide Email Search Box */
+    .newsletter-form input[type="email"] {
+        width: 350px;
+        /* Bigger width for email */
+        padding: 12px 16px;
+        /* Comfortable padding inside */
+        font-size: 15px;
+        border: 1px solid #ffffff;
+        border-radius: 6px;
+        outline: none;
     }
 
-    .newsletter-form input {
-        width: 320px;
+    .newsletter-form input[type="email"]::placeholder {
+        color: #777;
     }
 
+    /* Compact Proper Subscribe Button */
     .newsletter-form button {
-        width: 160px;
+        padding: 12px 24px;
+        /* Proper button size */
+        font-size: 15px;
+        font-weight: 600;
+        color: #ffffff;
+        background-color: #ff6600;
+        /* Orange color */
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        white-space: nowrap;
+        /* Prevents text breaking */
+        transition: background-color 0.2s ease;
+    }
+
+    .newsletter-form button:hover {
+        background-color: #e65c00;
     }
 
     .newsletter-image {
@@ -2895,8 +2952,12 @@ footer>p {
     }
 
     .offer-content {
-        width: 100%;
+        display: flex;
+        flex-direction: column;
+        width: 38%;
+        height: 100%;
     }
+
 
     .offer-content h2 {
         font-size: 34px;
@@ -2911,14 +2972,20 @@ footer>p {
     }
 
     .offer-content a {
-        width: 240px;
-        height: 55px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin: 28px auto 0;
-        font-size: 18px;
+        display: inline-block;
+        margin-top: auto;
+        padding: 10px 20px;
+        background: #ff3b30;
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: 80px;
+        border-radius: 10px;
+        width: 120px;
+        text-align: center;
+
     }
+
 
     #newsletter {
         flex-direction: column;
@@ -3024,6 +3091,7 @@ footer>p {
     #categories article img {
         width: 80px;
         height: 80px;
+    
     }
 
     #categories article h3 {
