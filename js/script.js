@@ -161,12 +161,26 @@ function updateOrderSummary() {
 }
 
 
+function escapeHTML(value) {
+    let entities = {
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    };
+
+    return String(value).replace(/[&<>"']/g, function (character) {
+        return entities[character];
+    });
+}
 
 // for cart system
 
 let cart = JSON.parse(localStorage.getItem("biteboxCart")) || [];
 
 let menuContainer = document.getElementById("menu-items");
+let card = document.querySelector("#menu-items article");
 
 if (menuContainer) {
     menuContainer.addEventListener("click", function (event) {
@@ -255,10 +269,10 @@ function renderCart() {
                     Your Cart is Empty
                 </h3>
 
-                <p>
+                <h4>
                     Add some delicious food
                     from our Menu!
-                </p>
+                </h4>
 
             </div>
 
@@ -277,6 +291,10 @@ function renderCart() {
     cart.forEach(function (item, index) {
 
         let itemTotal = item.price * item.quantity;
+        let name = escapeHTML(item.name);
+        let image = escapeHTML(item.image);
+        let price = escapeHTML(item.price);
+        let quantity = escapeHTML(item.quantity);
         let row = document.createElement("tr");
 
 
@@ -287,14 +305,14 @@ function renderCart() {
                 <div class="cart-item">
 
                     <img
-                        src="${item.image}"
-                        alt="${item.name}"
+                        src="${image}"
+                        alt="${name}"
                     >
 
                     <div>
 
                         <h3>
-                            ${item.name}
+                            ${name}
                         </h3>
 
                     </div>
@@ -305,7 +323,7 @@ function renderCart() {
 
 
             <td>
-                ₹${item.price}
+                ₹${price}
             </td>
 
 
@@ -320,7 +338,7 @@ function renderCart() {
                     </button>
 
                     <span>
-                        ${item.quantity}
+                        ${quantity}
                     </span>
 
                     <button
@@ -429,7 +447,7 @@ if (cartBody) {
 
         let link = event.target.closest("a");
         if (link && link.classList.contains("remove-item")) {
-            //  event.preventDefault();
+            event.preventDefault();
             let index = parseInt(link.dataset.index);
             removeFromCart(index);
         }
@@ -441,3 +459,72 @@ if (cartBody) {
 
 renderCart();
 updateOrderSummary(); 
+
+
+
+// serach and filter
+
+let menuCards = document.querySelectorAll("#menu-items article");
+
+
+
+let searchInput = document.getElementById("menu-search");
+
+let searchButton = document.getElementById("search-button");
+
+// let searchText=searchInput.value;
+
+function searchMenu(searchText) {
+    let searchValue =  searchText .trim().toLowerCase();
+
+    menuCards.forEach(function(card) {
+        let foodName = card.querySelector("h3").textContent.trim().toLowerCase();
+
+        if (foodName.includes(searchValue)) {
+            card.style.display = "";
+        }
+        else {
+            card.style.display = "none";
+        }
+    });
+
+}
+if (searchButton) {
+    searchButton.addEventListener(
+        "click",
+        function() {
+
+            searchMenu(
+               searchInput.value
+            );
+        }
+    );
+}
+let categoryCards = document.querySelectorAll("#categories article");
+function filterMenu(category) {
+
+    menuCards.forEach(function(card) {
+        let cardCategory = card.dataset.category.toLowerCase();
+
+        if (cardCategory === category) {
+            card.style.display = "";
+        }
+        else {
+            card.style.display = "none";
+        }
+    });
+
+}
+categoryCards.forEach(
+    function(card) {
+
+        card.addEventListener("click",function() {
+                let category = card.querySelector("h3")
+                        .textContent
+                        .trim()
+                        .toLowerCase();
+                filterMenu(category);
+            }
+        );
+    }
+);

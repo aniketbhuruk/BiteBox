@@ -155,3 +155,20 @@
 
 // let num =123.4567;
 // console.log(Math.ceil(num));
+
+
+//object methods
+var student ={
+    "name No":'aniket',
+    Age:22,
+    class:'ty Bsc'
+}
+console.log(student);
+console.log(student);
+student.Age =23;
+console.log(student);
+student.emil ="aniket2@jaxk.com";
+console.log(student);
+delete student.Age;
+console.log(student);
+console.log(student['name No']);
