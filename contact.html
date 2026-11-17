@@ -12,8 +12,8 @@
     <Header>
         <img src="./assete/image/logo.png" alt="logo page" class="logo">
         <hr>
-        <nav>
-            <a href="index.html">Home</a>
+         <nav>
+            <a href="index.html" class="active">Home</a>
             |
             <a href="menu.html">menu</a>
             |
@@ -21,9 +21,18 @@
             |
             <a href="contact.html">Contact</a>
             |
-            <a href="cart.html">
-                <img src="./assete/icons/shopping cart.png" alt="cart shopping icon" width="25" height="25">
+            <a href="cart.html" class="cart-icon">
+                <span class="cart-wrapper">
+                    <img src="./assete/icons/shopping cart.png" alt="cart shopping icon" width="25" height="25">
+                    <span id="cart-count">0</span>
+                </span>
+                
             </a>
+            |
+            <button type= "button"  id="theme-toggle" class="theme-toggle">
+                   <span class="theme-icon">☀</span> 
+                   <span class="theme-text">DAY MODE</span>
+            </button>
         </nav>
         <hr>
     </Header>
@@ -127,15 +136,15 @@
             <form>
         
                 <div class="form-row">
-                    <input type="text" placeholder="Your Name">
-                    <input type="email" placeholder="Your Email">
+                    <input type="text" name="name" placeholder="Your Name">
+                    <input type="email" name= "email "placeholder="Your Email">
                 </div>
 
                 <div class="form-row">
-                    <input type="tel" placeholder="Phone Number">
-                    <input type="text" placeholder="Subject">
+                    <input type="tel" name="phone" placeholder="Phone Number" >
+                    <input type="text" name="subject" placeholder="Subject">
                 </div>
-                <textarea placeholder="Your Message"></textarea>
+                <textarea name="message" placeholder="Your Message" ></textarea>
                 <button>Send Message ✈</button>
             </form>
         </div>
@@ -205,6 +214,7 @@
       <hr>
       <p>&copy; 2026 BiteBox. All Rights Reserved.</p>
     </footer>
+    <script src="./js/script.js"></script>
 </body>
 
 </html>
