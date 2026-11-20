@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        async function abcd(){
+           for( let i=1;i<=5;i++);
+            const resp = await fetch('https://jsonplaceholder.typicode.com/posts/2');
+            if (!resp.ok){
+                throw new Error('Request failed with statas ${resp.status}');
+            }
+            let data =await resp.json();
+            console.log(data);
+        }
+        abcd();
+    </script>
+</body>
+</html>

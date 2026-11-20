@@ -429,8 +429,6 @@ if (clearCartButton) {
 
 }
 
-
-
 if (cartBody) {
     cartBody.addEventListener("click", function (event) {
 
@@ -447,13 +445,13 @@ if (cartBody) {
             }
         }
 
-
         let link = event.target.closest("a");
         if (link && link.classList.contains("remove-item")) {
             event.preventDefault();
             let index = parseInt(link.dataset.index);
             removeFromCart(index);
         }
+        
 
     });
 }
@@ -659,15 +657,15 @@ function showToast(message, type) {
 
     }, 3000);
 }
-let name = contactForm.querySelector('input[name="name"]');
-let email = contactForm.querySelector('input[name="email"]');
-let phone = contactForm.querySelector('input[name="phone"]');
-let subject = contactForm.querySelector('input[name="subject"]');
-let message = contactForm.querySelector('textarea[name="message"]');
+// let name = contactForm.querySelector('input[name="name"]');
+// let email = contactForm.querySelector('input[name="email"]');
+// let phone = contactForm.querySelector('input[name="phone"]');
+// let subject = contactForm.querySelector('input[name="subject"]');
+// let message = contactForm.querySelector('textarea[name="message"]');
 
-contactForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-});
+// contactForm.addEventListener("submit", function (event) {
+//     event.preventDefault();
+// });
 
 
 
@@ -679,7 +677,6 @@ if (contactForm) {
             let name = contactForm.querySelector('input[name="name"]');
             let email = contactForm.querySelector('input[name="email"]');
             let phone = contactForm.querySelector('input[name="phone"]');
-    
             let subject = contactForm.querySelector('input[name="subject"]');
             let message = contactForm.querySelector('textarea[name="message"]');
 
@@ -723,3 +720,81 @@ if (contactForm) {
         }
     );
 }
+const addMenuBtn = document.getElementById("add-menu-btn");
+const menuModal = document.getElementById("menu-modal");
+const cancelMenuForm = document.getElementById("cancel-menu-form");
+
+const menuForm = document.getElementById("menu-form");
+
+if (addMenuBtn && menuModal) {
+    addMenuBtn.addEventListener("click", function () {
+        menuModal.classList.add("show");
+    });
+}
+
+if (cancelMenuForm && menuModal) {
+    cancelMenuForm.addEventListener("click", function () {
+        menuModal.classList.remove("show");
+    });
+}
+
+if (menuForm) {
+    menuForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("menu-name").value.trim();
+        const price = document.getElementById("menu-price").value.trim();
+        const category = document.getElementById("menu-category").value.trim();
+        const rating = document.getElementById("menu-rating").value.trim();
+        const reviews = document.getElementById("menu-reviews").value.trim();
+        const image = document.getElementById("menu-image").value.trim();
+
+        const menuItem = {
+            name: name,
+            price: price,
+            category: category,
+            rating: rating,
+            reviews: reviews,
+            image: image
+        };
+
+        const API_URL = "https://6afee9ae3a0e70bc8d543141.mockapi.io/menu";
+
+        try {
+            const response = await fetch(API_URL, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(menuItem)
+            });
+
+            if (!response.ok) {
+                throw new Error("Request failed with status " + response.status);
+            }
+
+            const data = await response.json();
+            console.log("Menu item added:", data);
+
+            if (typeof showToast === "function") {
+                showToast("Menu item added successfully!", "success");
+            }
+
+            menuForm.reset();
+            menuModal.classList.remove("show");
+        } catch (error) {
+            console.error("Error adding menu item:", error);
+            if (typeof showToast === "function") {
+                showToast("Could not add menu item.", "error");
+            }
+        }
+    });
+}
+async function fetchMenuItems() {
+    try {
+        const response = await fetch(API_URL);
+        const menuItems = await response.json();
+        console.log("Menu items fetched:", menuItems);
+    } catch (error) {
+        console.error("Error fetching menu items:", error);
+    } }
