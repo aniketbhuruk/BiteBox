@@ -177,7 +177,15 @@ function escapeHTML(value) {
 
 // for cart system
 
-let cart = JSON.parse(localStorage.getItem("biteboxCart")) || [];
+let cart = [];
+try {
+    cart = JSON.parse(localStorage.getItem("biteboxCart")) || [];
+    if (!Array.isArray(cart)) {
+        cart = [];
+    }
+} catch (error) {
+    localStorage.removeItem("biteboxCart");
+}
 
 let menuContainer = document.getElementById("menu-items");
 let card = document.querySelector("#menu-items article");
@@ -241,6 +249,7 @@ function addToCart(card) {
         JSON.stringify(cart)
     );
 
+    updateCartCount();
     renderCart();
 }
 
@@ -451,7 +460,7 @@ if (cartBody) {
             let index = parseInt(link.dataset.index);
             removeFromCart(index);
         }
-        
+
 
     });
 }
@@ -465,30 +474,35 @@ updateOrderSummary();
 
 // serach and filter
 
-let menuCards = document.querySelectorAll("#menu-items article");
-
-
-
 let searchInput = document.getElementById("menu-search");
 
 let searchButton = document.getElementById("search-button");
 
-// let searchText=searchInput.value;
+let activeMenuCategory = "";
 
 function searchMenu(searchText) {
     let searchValue = searchText.trim().toLowerCase();
+    let menuCards = document.querySelectorAll("#menu-items article");
+    let visibleItems = 0;
 
     menuCards.forEach(function (card) {
         let foodName = card.querySelector("h3").textContent.trim().toLowerCase();
+        let category = (card.dataset.category || "").toLowerCase();
+        let matchesSearch = foodName.includes(searchValue);
+        let matchesCategory = !activeMenuCategory || category === activeMenuCategory;
 
-        if (foodName.includes(searchValue)) {
+        if (matchesSearch && matchesCategory) {
             card.style.display = "";
+            visibleItems++;
         }
         else {
             card.style.display = "none";
         }
     });
-
+    let emptyState = document.getElementById("menu-empty-state");
+    if (emptyState) {
+        emptyState.hidden = visibleItems > 0;
+    }
 }
 if (searchButton) {
     searchButton.addEventListener(
@@ -501,35 +515,33 @@ if (searchButton) {
         }
     );
 }
+if (searchInput) {
+    searchInput.addEventListener("input", function () {
+        searchMenu(searchInput.value);
+    });
+}
 let categoryCards = document.querySelectorAll("#categories article");
-function filterMenu(category) {
-
-    menuCards.forEach(function (card) {
-        let cardCategory = card.dataset.category.toLowerCase();
-
-        if (cardCategory === category) {
-            card.style.display = "";
-        }
-        else {
-            card.style.display = "none";
+function selectMenuCategory(card) {
+    let selectedCategory = card.querySelector("h3").textContent.trim().toLowerCase();
+    activeMenuCategory = activeMenuCategory === selectedCategory ? "" : selectedCategory;
+    categoryCards.forEach(function (categoryCard) {
+        let isSelected = categoryCard === card && activeMenuCategory !== "";
+        categoryCard.classList.toggle("selected", isSelected);
+        categoryCard.setAttribute("aria-pressed", String(isSelected));
+    });
+    searchMenu(searchInput ? searchInput.value : "");
+}
+categoryCards.forEach(function (card) {
+    card.addEventListener("click", function () {
+        selectMenuCategory(card);
+    });
+    card.addEventListener("keydown", function (event) {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            selectMenuCategory(card);
         }
     });
-
-}
-categoryCards.forEach(
-    function (card) {
-
-        card.addEventListener("click", function () {
-            let category = card.querySelector("h3")
-                .textContent
-                .trim()
-                .toLowerCase();
-            filterMenu(category);
-        }
-        );
-    }
-);
-
+});
 //theme toggle
 
 
@@ -574,8 +586,8 @@ function loadTheme() {
     else {
         document.body.classList.remove("dark-theme");
     }
-    let themeIcon = themeButton.querySelector(".theme-icon");
-    let themeText = themeButton.querySelector(".theme-text");
+    let themeIcon = themeButton ? themeButton.querySelector(".theme-icon") : null;
+    let themeText = themeButton ? themeButton.querySelector(".theme-text") : null;
 
     if (savedTheme === "dark") {
         if (themeIcon) {
@@ -723,11 +735,59 @@ if (contactForm) {
 const addMenuBtn = document.getElementById("add-menu-btn");
 const menuModal = document.getElementById("menu-modal");
 const cancelMenuForm = document.getElementById("cancel-menu-form");
-
 const menuForm = document.getElementById("menu-form");
+const menuStorageKey = "biteboxMenuItems";
+let editingMenuId = null;
+let menuItems = [];
+
+function getInitialMenuItems() {
+    const menuContainer = document.getElementById("menu-container");
+    if (!menuContainer) {
+        return [];
+    }
+
+    return Array.from(menuContainer.querySelectorAll(":scope > article")).map(function (card, index) {
+        const ratingElement = card.querySelector(".rating");
+        const ratingText = ratingElement ? ratingElement.textContent : "";
+        const tag = card.querySelector(".tag");
+
+        return {
+            id: "menu-" + index,
+            name: card.querySelector("h3").textContent.trim(),
+            price: card.querySelector(".price").textContent.replace("₹", "").trim(),
+            category: card.dataset.category || "",
+            rating: ratingText.replace(/\(\d+\)/, "").trim(),
+            reviews: (ratingText.match(/\((\d+)\)/) || ["", ""])[1],
+            image: card.querySelector("img").getAttribute("src") || "",
+            tag: tag ? tag.textContent.trim() : "",
+            tagClass: tag && tag.classList.contains("spicy") ? "spicy" : ""
+        };
+    });
+}
+
+function saveMenuItems() {
+    localStorage.setItem(menuStorageKey, JSON.stringify(menuItems));
+}
+
+function loadMenuItems() {
+    const initialItems = getInitialMenuItems();
+    try {
+        const savedItems = JSON.parse(localStorage.getItem(menuStorageKey));
+        menuItems = Array.isArray(savedItems) ? savedItems : initialItems;
+    } catch (error) {
+        console.error("Could not read saved menu items:", error);
+        menuItems = initialItems;
+    }
+    displayMenuItems(menuItems);
+    searchMenu(searchInput ? searchInput.value : "");
+}
 
 if (addMenuBtn && menuModal) {
     addMenuBtn.addEventListener("click", function () {
+        editingMenuId = null;
+        menuForm.reset();
+        document.querySelector(".modal-header h2").textContent = "Add Menu Item";
+        document.querySelector("#menu-form button[type='submit']").textContent = "Add Menu Item";
         menuModal.classList.add("show");
     });
 }
@@ -738,15 +798,23 @@ if (cancelMenuForm && menuModal) {
     });
 }
 
+if (menuModal) {
+    menuModal.addEventListener("click", function (event) {
+        if (event.target === menuModal) {
+            menuModal.classList.remove("show");
+        }
+    });
+}
+
 if (menuForm) {
-    menuForm.addEventListener("submit", async function (event) {
+    menuForm.addEventListener("submit", function (event) {
         event.preventDefault();
 
         const name = document.getElementById("menu-name").value.trim();
-        const price = document.getElementById("menu-price").value.trim();
+        const price = Number(document.getElementById("menu-price").value);
         const category = document.getElementById("menu-category").value.trim();
         const rating = document.getElementById("menu-rating").value.trim();
-        const reviews = document.getElementById("menu-reviews").value.trim();
+        const reviews = Number(document.getElementById("menu-reviews").value);
         const image = document.getElementById("menu-image").value.trim();
 
         const menuItem = {
@@ -758,43 +826,118 @@ if (menuForm) {
             image: image
         };
 
-        const API_URL = "https://6afee9ae3a0e70bc8d543141.mockapi.io/menu";
-
-        try {
-            const response = await fetch(API_URL, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(menuItem)
+        const isUpdate = editingMenuId !== null;
+        if (isUpdate) {
+            menuItems = menuItems.map(function (item) {
+                return String(item.id) === editingMenuId
+                    ? Object.assign({}, item, menuItem, { id: editingMenuId })
+                    : item;
             });
+        } else {
+            menuItem.id = "menu-" + Date.now();
+            menuItems.push(menuItem);
+        }
 
-            if (!response.ok) {
-                throw new Error("Request failed with status " + response.status);
+        saveMenuItems();
+        displayMenuItems(menuItems);
+        editingMenuId = null;
+        menuForm.reset();
+        menuModal.classList.remove("show");
+        searchMenu(searchInput ? searchInput.value : "");
+        showToast(isUpdate ? "Menu item updated successfully!" : "Menu item added successfully!", "success");
+    });
+}
+function displayMenuItems(menuItems) {
+
+    const menuContainer = document.getElementById("menu-container");
+    if (!menuContainer) {
+        return;
+    }
+
+    menuContainer.innerHTML = "";
+
+    menuItems.forEach(menuItem => {
+        const card = document.createElement("article");
+        card.dataset.category = (menuItem.category || "").toLowerCase();
+        if (menuItem.id) {
+            card.dataset.menuId = String(menuItem.id);
+        }
+
+        card.innerHTML = `
+            ${menuItem.tag ? `<span class="tag ${escapeHTML(menuItem.tagClass || "")}">${escapeHTML(menuItem.tag)}</span>` : ""}
+            <img src="${escapeHTML(menuItem.image)}" alt="${escapeHTML(menuItem.name)}">
+            <h3>${escapeHTML(menuItem.name)}</h3>
+            <p class="rating">
+                ${escapeHTML(menuItem.rating)}
+                <small>(${escapeHTML(menuItem.reviews)})</small>
+            </p>
+          <p class="price">₹${escapeHTML(menuItem.price)}</p>
+          <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+            Edit
+          </button>
+          <button type="button" class="delete-menu-btn">
+             <img src="./assete/icons/Deleteicon.webp" alt="Delete">
+          </button>
+        </div>
+            <button type="button" class="bite">
+                <img src="./assete/image/redcart.webp" alt="Cart" width="14" height="14">
+                Add to Cart
+            </button>
+        `;
+        menuContainer.appendChild(card);
+    });
+}
+
+const adminMenuContainer = document.getElementById("menu-container");
+if (adminMenuContainer) {
+    adminMenuContainer.addEventListener("click", function (event) {
+        const updateButton = event.target.closest(".update-menu-btn");
+        const deleteButton = event.target.closest(".delete-menu-btn");
+
+        if (!updateButton && !deleteButton) {
+            return;
+        }
+
+        const card = event.target.closest("article");
+        if (!card) {
+            return;
+        }
+
+        if (updateButton) {
+            editingMenuId = card.dataset.menuId || null;
+            document.querySelector(".modal-header h2").textContent = "Update Menu Item";
+            document.getElementById("menu-name").value = card.querySelector("h3").textContent.trim();
+            document.getElementById("menu-price").value =
+                card.querySelector(".price").textContent.replace("₹", "").trim();
+            document.getElementById("menu-category").value = card.dataset.category || "";
+
+            const ratingText = card.querySelector(".rating").textContent;
+            document.getElementById("menu-rating").value = ratingText.replace(/\(\d+\)/, "").trim();
+            document.getElementById("menu-reviews").value =
+                (ratingText.match(/\((\d+)\)/) || ["", ""])[1];
+            document.getElementById("menu-image").value =
+                card.querySelector("img").getAttribute("src") || "";
+            document.querySelector("#menu-form button[type='submit']").textContent = "Update Menu Item";
+            menuModal.classList.add("show");
+            return;
+        }
+
+        if (deleteButton) {
+            const itemName = card.querySelector("h3").textContent.trim();
+            if (!window.confirm("Are you sure you want to delete " + itemName + "?")) {
+                return;
             }
 
-            const data = await response.json();
-            console.log("Menu item added:", data);
-
-            if (typeof showToast === "function") {
-                showToast("Menu item added successfully!", "success");
-            }
-
-            menuForm.reset();
-            menuModal.classList.remove("show");
-        } catch (error) {
-            console.error("Error adding menu item:", error);
-            if (typeof showToast === "function") {
-                showToast("Could not add menu item.", "error");
-            }
+            menuItems = menuItems.filter(function (item) {
+                return String(item.id) !== card.dataset.menuId;
+            });
+            saveMenuItems();
+            displayMenuItems(menuItems);
+            searchMenu(searchInput ? searchInput.value : "");
         }
     });
 }
-async function fetchMenuItems() {
-    try {
-        const response = await fetch(API_URL);
-        const menuItems = await response.json();
-        console.log("Menu items fetched:", menuItems);
-    } catch (error) {
-        console.error("Error fetching menu items:", error);
-    } }
+if (adminMenuContainer) {
+    loadMenuItems();
+}

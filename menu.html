@@ -2,85 +2,85 @@
 <html lang="en">
 
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <title>BiteBox</title>
-    <link rel="stylesheet" href="./css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BiteBox</title>
+  <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
-   <header>
-        <img src="./assete/image/logo.png" alt="logo page" class="logo">
-         <nav>
-            <a href="index.html" class="active">Home</a>
-            |
-            <a href="menu.html">menu</a>
-            |
-            <a href="about.html">about us</a>
-            |
-            <a href="contact.html">Contact</a>
-            |
-            <a href="cart.html" class="cart-icon">
-                <span class="cart-wrapper">
-                    <img src="./assete/icons/shopping cart.png" alt="cart shopping icon" width="25" height="25">
-                    <span id="cart-count">0</span>
-                </span>
-                
-            </a>
-            |
-            <button type= "button"  id="theme-toggle" class="theme-toggle">
-                   <span class="theme-icon">☀</span> 
-                   <span class="theme-text">DAY MODE</span>
-            </button>
-        </nav>
-    </header>
+  <header>
+    <img src="./assete/image/logo.png" alt="logo page" class="logo">
+    <nav>
+      <a href="index.html">Home</a>
+      |
+      <a href="menu.html" class="active">menu</a>
+      |
+      <a href="about.html">about us</a>
+      |
+      <a href="contact.html">Contact</a>
+      |
+      <a href="cart.html" class="cart-icon">
+        <span class="cart-wrapper">
+          <img src="./assete/icons/shopping cart.png" alt="cart shopping icon" width="25" height="25">
+          <span id="cart-count">0</span>
+        </span>
 
- <section id="menu-hero">
-      <h1>Explore Our Delicious Menu</h1>
-      <p>
-        Discover freshly prepared pizzas, burgers, pasta, paneer tikka, sandwiches and
-        many more delicious dishes made with premium ingredients.
-      </p>
-    </section>
+      </a>
+      |
+      <button type="button" id="theme-toggle" class="theme-toggle">
+        <span class="theme-icon">☀</span>
+        <span class="theme-text">DAY MODE</span>
+      </button>
+    </nav>
+  </header>
 
-    <section id="categories">
-      <h2>Browse Categories</h2>
-      <div>
-        <article>
-          <img src="./assete/image/pizza icon.png" alt="Pizza" width="120" height="120">
-          <h3>Pizza</h3>
-        </article>
-        <article>
-          <img src="./assete/image/burgericon.png" alt="Burger" width="120" height="120">
-          <h3>Burger</h3>
-        </article>
-        <article>
-          <img src="./assete/image/pasta icon.png" alt="Pasta" width="120" height="120">
-          <h3>Pasta</h3>
-        </article>
-        <article>
-          <img src="./assete/image/pannier tikaicon.png" alt="Paneer Tikka" width="120" height="120">
-          <h3>Paneer Tikka</h3>
-        </article>
-      </div>
-    </section>
+  <section id="menu-hero">
+    <h1>Explore Our Delicious Menu</h1>
+    <p>
+      Discover freshly prepared pizzas, burgers, pasta, paneer tikka, sandwiches and
+      many more delicious dishes made with premium ingredients.
+    </p>
+  </section>
 
-    <section id="menu-items">
-      <h2>
-        <span></span>
-        Popular Dishes
-        <span></span>
-      </h2>
-       <div class="menu-controls">
-        <div class="menu-search">
-        <input type="text" id="menu-search" placeholder="Search your favorite diashes...">
+  <section id="categories">
+    <h2>Browse Categories</h2>
+    <div>
+      <article role="button" tabindex="0" aria-pressed="false">
+        <img src="./assete/image/pizza icon.png" alt="Pizza" width="120" height="120">
+        <h3>Pizza</h3>
+      </article>
+      <article role="button" tabindex="0" aria-pressed="false">
+        <img src="./assete/image/burgericon.png" alt="Burger" width="120" height="120">
+        <h3>Burger</h3>
+      </article>
+      <article role="button" tabindex="0" aria-pressed="false">
+        <img src="./assete/image/pasta icon.png" alt="Pasta" width="120" height="120">
+        <h3>Pasta</h3>
+      </article>
+      <article role="button" tabindex="0" aria-pressed="false">
+        <img src="./assete/image/pannier tikaicon.png" alt="Paneer Tikka" width="120" height="120">
+        <h3>Paneer Tikka</h3>
+      </article>
+    </div>
+  </section>
+
+  <section id="menu-items">
+    <h2>
+      <span></span>
+      Popular Dishes
+      <span></span>
+    </h2>
+    <div class="menu-controls">
+      <div class="menu-search">
+        <input type="search" id="menu-search" placeholder="Search your favorite dishes..." aria-label="Search menu">
         <button type="button" id="search-button">
-          <img src="./assets/icons/search.png" alt="Search" width="20" height="20">
+          <img src="./assete/icons/search.png" alt="Search" width="20" height="20">
         </button>
       </div>
       <button type="button" id="add-menu-btn"> + Add Menu Item </button>
-       </div> 
-       <div id="menu-modal" class="menu-modal">
+    </div>
+    <div id="menu-modal" class="menu-modal">
       <div class="menu-modal-content">
         <div class="modal-header">
           <h2>Add Menu Item</h2>
@@ -96,7 +96,7 @@
 
             <div class="form-group">
               <label for="menu-price"> Price (₹) </label>
-              <input type="number" id="menu-price" placeholder="Enter price" required>
+              <input type="number" id="menu-price" min="0.01" step="0.01" placeholder="Enter price" required>
             </div>
 
           </div>
@@ -118,14 +118,12 @@
           <div class="form-row">
             <div class="form-group">
               <label for="menu-reviews"> Number of Reviews </label>
-              <input type="number" id="menu-reviews" placeholder="Enter number of reviews" 
-              required>
+              <input type="number" id="menu-reviews" min="0" step="1" placeholder="Enter number of reviews" required>
             </div>
 
             <div class="form-group">
               <label for="menu-image"> Image URL / Path </label>
-              <input type="text" id="menu-image" placeholder="Enter image URL or path" 
-              required>
+              <input type="text" id="menu-image" placeholder="Enter image URL or path" required>
             </div>
           </div>
 
@@ -135,63 +133,110 @@
           </div>
         </form>
       </div>
-    </div>     
-      <div>
-        <article data-category="pizza">
-          <span class="tag">Bestseller</span>
-          <img src="./assete/image/pizza.png" alt="Margherita Pizza">
-          <h3>Margherita Pizza</h3>
-          <p class="rating">⭐⭐⭐⭐⭐<small>(120)</small></p>
-          <p class="price">₹249</p>
-          <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to Cart</button>
-        </article>
-        <article data-category="burger">
-          <img src="./assete/image/burger.png" alt="Cheese Burger">
-          <h3>Cheese Burger</h3>
-          <p class="rating">⭐⭐⭐⭐⭐<small>(98)</small></p>
-          <p class="price">₹199</p>
-          <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to Cart</button>
-        </article>
-        <article data-category="pasta">
-          <img src="./assete/image/pasta.webp" alt="Creamy Alfredo Pasta">
-          <h3>Creamy Alfredo Pasta</h3>
-          <p class="rating">⭐⭐⭐⭐⭐<small>(85)</small></p>
-          <p class="price">₹229</p>
-          <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to Cart</button>
-        </article>
-        <article data-category="paneer tikka">
-          <span class="tag spicy">Spicy</span>
-          <img src="./assete/image/pannier tika.png" alt="Paneer Tikka">
-          <h3>Paneer Tikka</h3>
-          <p class="rating">⭐⭐⭐⭐⭐<small>(110)</small></p>
-          <p class="price">₹279</p>
-          <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to Cart</button>
-        </article>
-        <article data-category="sandwich">
-          <img src="./assete/image/sandwich.webp" alt="Veg Club Sandwich">
-          <h3>Veg Club Sandwich</h3>
-          <p class="rating">⭐⭐⭐⭐⭐<small>(60)</small></p>
-          <p class="price">₹179</p>
-          <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to Cart</button>
-        </article>
-      </div>
-    </section>
+    </div>
+    <div id="menu-container">
+      <article data-category="pizza">
+        <span class="tag">Bestseller</span>
+        <img src="./assete/image/pizza.png" alt="Margherita Pizza">
+        <h3>Margherita Pizza</h3>
+        <p class="rating">⭐⭐⭐⭐⭐<small>(120)</small></p>
+        <p class="price">₹249</p>
+        <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+          Edit
+          </button>
+            <button type="button" class="delete-menu-btn" aria-label="Delete Margherita Pizza">
+              <img src="./assete/icons/Deleteicon.webp" alt="">
+          </button>
+        </div>
+        <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to
+          Cart</button>
+      </article>
+      <article data-category="burger">
+        <img src="./assete/image/burger.png" alt="Cheese Burger">
+        <h3>Cheese Burger</h3>
+        <p class="rating">⭐⭐⭐⭐⭐<small>(98)</small></p>
+        <p class="price">₹199</p>
+        <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+            Edit
+          </button>
+          <button type="button" class="delete-menu-btn" aria-label="Delete Cheese Burger">
+            <img src="./assete/icons/Deleteicon.webp" alt="">
+          </button>
+        </div>
+        <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to
+          Cart</button>
+      </article>
+      <article data-category="pasta">
+        <img src="./assete/image/pasta.webp" alt="Creamy Alfredo Pasta">
+        <h3>Creamy Alfredo Pasta</h3>
+        <p class="rating">⭐⭐⭐⭐⭐<small>(85)</small></p>
+        <p class="price">₹229</p>
+        <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+            Edit
+          </button>
+          <button type="button" class="delete-menu-btn" aria-label="Delete Creamy Alfredo Pasta">
+            <img src="./assete/icons/Deleteicon.webp" alt="">
+          </button>
+        </div>
+        <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to
+          Cart</button>
+      </article>
+      <article data-category="paneer tikka">
+        <span class="tag spicy">Spicy</span>
+        <img src="./assete/image/pannier tika.png" alt="Paneer Tikka">
+        <h3>Paneer Tikka</h3>
+        <p class="rating">⭐⭐⭐⭐⭐<small>(110)</small></p>
+        <p class="price">₹279</p>
+        <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+            Edit
+          </button>
+          <button type="button" class="delete-menu-btn" aria-label="Delete Paneer Tikka">
+            <img src="./assete/icons/Deleteicon.webp" alt="">
+          </button>
+        </div>
+        <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to
+          Cart</button>
+      </article>
+      <article data-category="sandwich">
+        <img src="./assete/image/sandwich.webp" alt="Veg Club Sandwich">
+        <h3>Veg Club Sandwich</h3>
+        <p class="rating">⭐⭐⭐⭐⭐<small>(60)</small></p>
+        <p class="price">₹179</p>
+        <div class="menu-actions">
+          <button type="button" class="update-menu-btn">
+            Edit
+          </button>
+          <button type="button" class="delete-menu-btn" aria-label="Delete Veg Club Sandwich">
+            <img src="./assete/icons/Deleteicon.webp" alt="">
+          </button>
+        </div>
+        <button class="bite"><img src="./assete/image/redcart.webp" alt="Red Cart" width="14" height="14"> Add to
+          Cart</button>
+      </article>
+    </div>
+    <p id="menu-empty-state" hidden>No dishes match your search or selected category.</p>
+  </section>
 
-   <section id="offer">
-            <div class="offer-contact">
-                <h2>
-                   <span> Today</span> Special Offer ! </h2>
-                <p>get <strong>BITE20</strong> on all order above <strong> 499</strong> </p>
-                <p>use code : <strong>BIT20</strong></p>
-                <a class="order" href="#menu-items">Order Now</a>
-            </div>
-        </section>
+  <section id="offer">
+    <div class="offer-contact">
+      <h2>
+        <span> Today</span> Special Offer !
+      </h2>
+      <p>get <strong>BITE20</strong> on all order above <strong> 499</strong> </p>
+      <p>use code : <strong>BIT20</strong></p>
+      <a class="order" href="#menu-items">Order Now</a>
+    </div>
+  </section>
 
-      <footer>
-      <div class="footer-container">
+  <footer>
+    <div class="footer-container">
       <!-- Footer Logo Section -->
       <section>
-         <img src="./assete/image/logo.png" alt="BiteBox Logo">
+        <img src="./assete/image/logo.png" alt="BiteBox Logo">
         <p>Delicious Food Delivered to your Doorstep. Fast, Fresh and Tasty..!!</p>
         <div class="footer-socials">
           <a href="#"><img src="./assete/icons/facebook.avif" alt="Facebook" width="35" height="35"></a>
@@ -232,16 +277,17 @@
       <hr>
       <section>
         <h3>Payment Method</h3>
-          <div class="payment-icons">
+        <div class="payment-icons">
           <img src="./assete/icons/visa logo.webp" alt="Visa" width="60">
           <img src="./assete/icons/mastercard.webp" alt="MasterCard" width="60">
           <img src="./assete/icons/upi.webp" alt="UPI" width="60">
         </div>
       </section>
-      </div>
-      <hr>
-      <p>&copy; 2026 BiteBox. All Rights Reserved.</p>
-    </footer>
-   <script src="./js/script.js"></script>
-  </body>
+    </div>
+    <hr>
+    <p>&copy; 2026 BiteBox. All Rights Reserved.</p>
+  </footer>
+  <script src="./js/script.js"></script>
+</body>
+
 </html>
